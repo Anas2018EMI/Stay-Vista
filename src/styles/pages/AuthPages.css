@@ -1,0 +1,251 @@
+.auth-page {
+  display: flex;
+  min-height: calc(100vh - 70px); /* Adjust based on navbar height */
+  max-width: 80%;
+  margin: 0 10%;
+}
+
+.auth-container {
+  flex: 1;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-image {
+  flex: 1;
+  background-color: var(--bg-secondary);
+  display: none;
+}
+
+.auth-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.auth-header p {
+  color: var(--text-secondary);
+}
+
+.auth-error {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: var(--color-danger);
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.auth-form {
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+}
+
+.remember-me input[type="checkbox"] {
+  margin-right: 0.5rem;
+  width: auto;
+}
+
+.forgot-password {
+  color: var(--color-primary);
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.auth-button {
+  width: 100%;
+  padding: 0.9rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.auth-button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.auth-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.host-button {
+  background-color: var(--color-secondary);
+}
+
+.host-button:hover {
+  background-color: var(--color-secondary-dark);
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  color: var(--text-tertiary);
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--border-color);
+}
+
+.auth-divider span {
+  padding: 0 1rem;
+  font-size: 0.875rem;
+}
+
+.social-auth {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.social-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+}
+
+.social-button:hover {
+  background-color: var(--bg-secondary);
+}
+
+.social-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+  font-weight: 600;
+  border-radius: 50%;
+}
+
+.google .social-icon {
+  color: #ea4335;
+  background-color: rgba(234, 67, 53, 0.1);
+}
+
+.facebook .social-icon {
+  color: #1877f2;
+  background-color: rgba(24, 119, 242, 0.1);
+}
+
+.auth-footer {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.auth-footer p {
+  margin-bottom: 0.75rem;
+}
+
+.auth-footer a {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+.terms-agreement {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.terms-agreement input {
+  margin-right: 0.75rem;
+  margin-top: 0.25rem;
+  width: auto;
+}
+
+.terms-agreement a {
+  color: var(--color-primary);
+}
+
+.terms-agreement a:hover {
+  text-decoration: underline;
+}
+
+.host-auth .auth-container {
+  background-color: var(--bg-primary);
+}
+
+.host-auth .auth-header h1 {
+  color: var(--color-secondary);
+}
+
+@media (min-width: 992px) {
+  .auth-image {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .auth-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .auth-header h1 {
+    font-size: 1.75rem;
+  }
+}
