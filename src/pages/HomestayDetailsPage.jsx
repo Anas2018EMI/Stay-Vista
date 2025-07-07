@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link, useLocation } from 'react-router-dom';
+import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
 import { getHomestayById, getNearbyHomestays } from '../services/mockDataService';
 import { useAuth } from '../contexts/AuthContext';
 import { useWishlist } from '../contexts/WishlistContext';
+import { useBooking } from '../contexts/BookingContext';
+import { createPortal } from 'react-dom';
+import Confetti from 'react-confetti'
 import '../styles/pages/HomestayDetailsPage.css';
 
 const HomestayDetailsPage = () => {
     const { id } = useParams();
     const { currentUser } = useAuth();
     const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+    const { addToBooking } = useBooking();
     const [homestay, setHomestay] = useState(null);
     const [nearbyHomestays, setNearbyHomestays] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -16,12 +20,15 @@ const HomestayDetailsPage = () => {
     const [review, setReview] = useState({ rating: 5, comment: '' });
     const [showAllAmenities, setShowAllAmenities] = useState(false);
     const location = useLocation();
+    const [dropConfetti, setDropConfetti] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false);
     const [bookingDetails, setBookingDetails] = useState({
         location: '',
         checkIn: '',
         checkOut: '',
         guests: 1,
     });
+    const navigate = useNavigate();
     let numDays = (new Date(bookingDetails.checkOut) - new Date(bookingDetails.checkIn))/(1000*60*60*24);
 
     // Get initial filters from URL query params
@@ -37,6 +44,7 @@ const HomestayDetailsPage = () => {
         }));
     }, [location.search]);
 
+    // Get Homestay and nearby homestays data
     useEffect(() => {
         const fetchHomestay = async () => {
             setLoading(true);
@@ -57,6 +65,49 @@ const HomestayDetailsPage = () => {
         // Scroll to top when component mounts or id changes
         window.scrollTo(0, 0);
     }, [id]);
+
+    const Modal = () => {
+        return (
+            <div className="modal">
+                <div className="modal-header">
+                    <h1>congratulations!</h1>
+                    <p>Your booking is processed successfully</p>
+                </div>
+                <img src="/public/assets/images/done.png" alt="" />
+                <div className="modal-button">
+                    <Link to="/profile">
+                        <button>Check your Bookings</button>
+                    </Link>
+                    <Link>
+                        <button onClick={() => {
+                            setModalOpen(prev => !prev)
+                            setDropConfetti(prev => !prev)
+                            }} >Cancel</button>
+                    </Link>
+                </div>
+            </div>
+        );
+    }
+
+    const handleBookings = (e) => {
+        if (currentUser) {
+            e.preventDefault();
+            const newBooking = {
+                id: homestay.id,
+                homestayTitle: homestay.title,
+                location: homestay.location,
+                dates: bookingDetails.checkIn + ' - ' + bookingDetails.checkOut ,
+                status: 'completed',
+                amount: numDays ?  homestay.price * numDays * bookingDetails.guests + 50 + 30 : 0,
+            }
+            addToBooking(newBooking)
+            setDropConfetti(prev => !prev)
+            setModalOpen(prev => !prev)
+        } else {
+            navigate("/login")
+        }
+        
+    }
 
     const handleWishlistToggle = () => {
         if (isInWishlist(homestay.id)) {
@@ -98,6 +149,7 @@ const HomestayDetailsPage = () => {
 
     return (
         <div className="homestay-details-page">
+            {dropConfetti && <Confetti height={3550}/>}
             <div className="homestay-header">
                 <h1 className="homestay-title">{homestay.title}</h1>
                 <div className="homestay-subheader">
@@ -129,6 +181,8 @@ const HomestayDetailsPage = () => {
                     ))}
                 </div>
             </div>
+
+            {modalOpen && createPortal(<Modal />, document.body)}
 
             <div className="homestay-content">
                 <div className="homestay-main">
@@ -188,7 +242,7 @@ const HomestayDetailsPage = () => {
                         </div>
                     </section>
 
-                    <section className="homestay-reviews">
+                    <section id="reviews" className="homestay-reviews">
                         <h2>Reviews</h2>
                         <div className="reviews-summary">
                             <div className="average-rating">
@@ -276,7 +330,7 @@ const HomestayDetailsPage = () => {
                             <span className="price-night">/ night</span>
                         </div>
 
-                        <form className="booking-form">
+                        <form className="booking-form" onSubmit={handleBookings}>
                             <div className="booking-dates">
                                 <div className="date-input">
                                     <label>Check-in</label>
@@ -306,6 +360,7 @@ const HomestayDetailsPage = () => {
 
                             <button type="submit" className="book-now-button">Book Now</button>
                         </form>
+                        
 
                         <div className="booking-total">
                             <div className="price-breakdown">
@@ -336,10 +391,6 @@ const HomestayDetailsPage = () => {
                                 : '🤍 Add to Wishlist'
                             }
                         </button>}
-                        {/* Reporting a homestay is not essential for now */}
-                        {/* <div className="report-listing">
-                            <button className="report-button">Report this listing</button>
-                        </div> */}
                     </div>
 
                     

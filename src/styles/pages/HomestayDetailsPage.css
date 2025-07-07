@@ -86,6 +86,53 @@
   object-fit: cover;
 }
 
+.modal {
+  width: 460px;
+  background-color: var(--bg-primary);
+  border: solid 1px #d1d5da;
+  border-radius: 30px;
+  position: fixed;
+  z-index: 5;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal-header {
+  padding: 20px 20px;
+}
+
+.modal img {
+  height: 150px;
+  margin: 50px 0;
+}
+
+.modal-button {
+  width: 100%;
+  padding: 20px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.modal button {
+  width: 170px;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modal-button a:nth-of-type(2) button {
+  background-color: #cbcaca;
+  color: black;
+}
+
 .homestay-content {
   display: flex;
   gap: 2rem;
@@ -519,7 +566,7 @@
 
 .book-now-button {
   width: 100%;
-  background-color: var(--color-primary);
+  background-color: var(--color-secondary);
   color: white;
   padding: 1rem;
   border: none;
@@ -561,7 +608,7 @@
 .wishlist-button {
   width: 100%;
   padding: 1rem;
-  background-color: var(--bg-primary);
+  background-color: var(--color-primary);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   font-weight: 500;

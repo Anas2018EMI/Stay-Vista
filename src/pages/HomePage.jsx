@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SearchBar from '../components/common/SearchBar';
+import { Link } from 'react-router-dom';
 import { getFeaturedHomestays, getPopularDestinations, getTestimonials } from '../services/mockDataService';
 import '../styles/pages/HomePage.css';
 
@@ -52,19 +53,21 @@ const HomePage = () => {
                 </div>
                 <div className="featured-grid">
                     {featuredStays.map((stay) => (
-                        <div key={stay.id} className="featured-card">
-                            <img src={stay.images[0]} alt={stay.title} />
-                            <div className="featured-card-content">
-                                <div className="featured-card-location">{stay.location}</div>
-                                <h3 className="featured-card-title">{stay.title}</h3>
-                                <div className="featured-card-price">${stay.price} <span>/ night</span></div>
-                                <div className="featured-card-rating">
-                                    <span className="star-icon">★</span>
-                                    <span>{stay.rating}</span>
-                                    <span className="reviews-count">({stay.reviewsCount} reviews)</span>
+                        <Link to={`/homestay/${stay.id}`} key={stay.id} >
+                            <div key={stay.id} className="featured-card">
+                                <img src={stay.images[0]} alt={stay.title} />
+                                <div className="featured-card-content">
+                                    <div className="featured-card-location">{stay.location}</div>
+                                    <h3 className="featured-card-title">{stay.title}</h3>
+                                    <div className="featured-card-price">${stay.price} <span>/ night</span></div>
+                                    <div className="featured-card-rating">
+                                        <span className="star-icon">★</span>
+                                        <span>{stay.rating}</span>
+                                        <span className="reviews-count">({stay.reviewsCount} reviews)</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </section>

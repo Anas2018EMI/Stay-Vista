@@ -309,7 +309,7 @@
     to right,
     var(--border-color) var(--min-percent, 0%),
     var(--color-primary) var(--min-percent, 0%),
-    var(--color-primary) var(--max-percent, 100%),
+    var(--color-secondary) var(--max-percent, 100%),
     var(--border-color) var(--max-percent, 100%)
   );
   border-radius: var(--border-radius-full);

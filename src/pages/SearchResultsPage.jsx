@@ -32,6 +32,7 @@ const SearchResultsPage = () => {
         }));
     }, [location.search]);
 
+
     // Fetch results based on filters
     useEffect(() => {
         const fetchResults = async () => {
@@ -101,6 +102,19 @@ const SearchResultsPage = () => {
             sortBy: 'popular'
         });
     };
+
+    function handleHomestay(id){
+        // Build query params
+        const params = new URLSearchParams();
+        const {location: destination, checkIn, checkOut, guests} = filters;
+        if (destination) params.set('location', destination);
+        if (checkIn) params.set('checkIn', checkIn);
+        if (checkOut) params.set('checkOut', checkOut);
+        if (guests > 0) params.set('guests', guests.toString());
+
+        // Navigate to search results with query params
+        return `/homestay/${id}?${params.toString()}`;
+    }
 
     const amenitiesList = [
         'Wifi', 'Pool', 'Kitchen', 'Air conditioning', 'Free parking',
@@ -228,7 +242,7 @@ const SearchResultsPage = () => {
                                     <div className="result-info">
                                         <div className="result-header">
                                             <h2 className="result-title">
-                                                <Link to={`/homestay/${homestay.id}`}>{homestay.title}</Link>
+                                                <Link to={handleHomestay(homestay.id)}>{homestay.title}</Link>
                                             </h2>
                                             <div className="result-location">{homestay.location}</div>
                                             <div className="result-rating">
@@ -276,7 +290,7 @@ function getAmenityIcon(amenity) {
         case 'air conditioning': return <img src="../../public/assets/images/amenity-ac.png" alt="" /> ;
         case 'free parking': return <img src="../../public/assets/images/amenity-parking.png" alt="" /> ;
         case 'washing machine': return <img src="../../public/assets/images/amenity-washing.png" alt="" /> ;
-        case 'tv': return <img src="" alt="../../public/assets/images/amenity-tv.png" /> ;
+        case 'tv': return <img alt="" src="../../public/assets/images/amenity-tv.png" /> ;
         case 'workspace': return <img src="../../public/assets/images/amenity-workspace.png" alt="" /> ;
         case 'ocean view': return <img src="../../public/assets/images/amenity-ocean-view.png" alt="" /> ;
         case 'mountain view': return <img src="../../public/assets/images/amenity-mountain-view.png" alt="" /> ;

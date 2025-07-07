@@ -10,30 +10,30 @@ const Footer = () => {
                     <div className="footer-column">
                         <h3>StayVista</h3>
                         <ul>
-                            <li><Link to="/about">About Us</Link></li>
-                            <li><Link to="/careers">Careers</Link></li>
-                            <li><Link to="/press">Press</Link></li>
-                            <li><Link to="/blog">Blog</Link></li>
+                            <li><Link to="/">About Us</Link></li>
+                            <li><Link to="/">Careers</Link></li>
+                            <li><Link to="/">Press</Link></li>
+                            <li><Link to="/">Blog</Link></li>
                         </ul>
                     </div>
 
                     <div className="footer-column">
                         <h3>Hosting</h3>
                         <ul>
-                            <li><Link to="/host">Become a Host</Link></li>
-                            <li><Link to="/host/resources">Hosting Resources</Link></li>
-                            <li><Link to="/host/responsible">Responsible Hosting</Link></li>
-                            <li><Link to="/host/community">Community Forum</Link></li>
+                            <li><Link to="/host/signup">Become a Host</Link></li>
+                            <li><Link to="/">Hosting Resources</Link></li>
+                            <li><Link to="/">Responsible Hosting</Link></li>
+                            <li><Link to="/">Community Forum</Link></li>
                         </ul>
                     </div>
 
                     <div className="footer-column">
                         <h3>Support</h3>
                         <ul>
-                            <li><Link to="/help">Help Center</Link></li>
-                            <li><Link to="/safety">Safety Information</Link></li>
-                            <li><Link to="/cancellation">Cancellation Options</Link></li>
-                            <li><Link to="/covid">COVID-19 Response</Link></li>
+                            <li><Link to="/">Help Center</Link></li>
+                            <li><Link to="/">Safety Information</Link></li>
+                            <li><Link to="/">Cancellation Options</Link></li>
+                            <li><Link to="/">COVID-19 Response</Link></li>
                         </ul>
                     </div>
 
@@ -67,9 +67,9 @@ const Footer = () => {
                     <div className="footer-legal">
                         <p>&copy; {new Date().getFullYear()} StayVista. All rights reserved.</p>
                         <ul className="legal-links">
-                            <li><Link to="/privacy">Privacy</Link></li>
-                            <li><Link to="/terms">Terms</Link></li>
-                            <li><Link to="/sitemap">Sitemap</Link></li>
+                            <li><Link to="/">Privacy</Link></li>
+                            <li><Link to="/">Terms</Link></li>
+                            <li><Link to="/">Sitemap</Link></li>
                         </ul>
                     </div>
                     <div className="footer-currency">

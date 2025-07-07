@@ -130,7 +130,8 @@
 
 .footer-currency select {
   background-color: var(--bg-primary);
-  border: 1px solid var(--border-color);
+  border: 1px solid #e1e4e8;
+  color: #e1e4e8;
   border-radius: var(--border-radius);
   padding: 0.5rem;
   font-size: 0.875rem;
